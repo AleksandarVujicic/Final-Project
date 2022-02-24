@@ -22,12 +22,18 @@ public class Notification_System_Page extends Basic_Page {
 	}
 
 	public String getNotificationMessage() {
-		return driver.findElement(By.xpath("//div[contains(@class,'system_message')]")).getText();
+
+		return driver.findElement(By.xpath("//*[contains(@class, 'alert--success')]")).getText();
 	}
 
-	public void waitForMessageToDissapear() {
+	public String getNotificationErrorMessage() {
+
+		return driver.findElement(By.xpath("//*[contains(@class, 'alert--danger')]")).getText();
+	}
+
+	public void waitForMessageToDisappear() throws InterruptedException {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-		wait.until(ExpectedConditions.attributeToBe(
-				driver.findElement(By.xpath("//*[contains(@class, 'system_message')]")), "style", "display:none;"));
+		wait.until(ExpectedConditions.attributeToBe(By.xpath(" //*[contains(@class, 'system_message')]"), "style",
+				"display: none;"));
 	}
 }

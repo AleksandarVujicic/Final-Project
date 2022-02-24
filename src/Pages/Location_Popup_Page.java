@@ -44,7 +44,7 @@ public class Location_Popup_Page extends Basic_Page {
 
 	public void setLocation(String locationName) throws InterruptedException {
 
-		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js = (JavascriptExecutor) driver;
 		getKeyWord().click();
 		Thread.sleep(1000);
 		String location = getLocationItem(locationName).getAttribute("data-value");

@@ -13,6 +13,10 @@ public class Login_Page extends Basic_Page {
 
 	}
 
+	public void openLoginPage() {
+		driver.navigate().to("http://demo.yo-meals.com/guest-user/login-form");
+	}
+	
 	public WebElement getUserName() {
 		return driver.findElement(By.xpath("//*[@name='username']"));
 	}
@@ -25,14 +29,21 @@ public class Login_Page extends Basic_Page {
 		return driver.findElement(By.xpath("//*[@class='checkbox']"));
 	}
 
-	public WebElement getLogin() {
-		return driver.findElement(By.xpath("//*[@name='btn_submit']"));
+	public WebElement getLoginPage() {
+		return driver.findElement(By.xpath("//div[contains(@class, 'accounts-link accounts-popup')]/ul/li[2]"));
+	}
+	
+	public WebElement getLoginButton() {
+		return driver.findElement(By.xpath("//input[contains(@name, 'btn_submit')]"));
 	}
 
 	public void userLogin(String userName, String password) {
+		
+		getLoginPage().click();
 		getUserName().clear();
 		getPassword().clear();
 		getUserName().sendKeys(userName);
 		getPassword().sendKeys(password);
+		getLoginButton().click();
 	}
 }
